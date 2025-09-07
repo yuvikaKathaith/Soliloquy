@@ -122,26 +122,42 @@
 }
 
 /* Font */
-:root {
-  --font-space-mono: 'Space Mono', monospace;
-  --font-inter: 'Inter', sans-serif;
+.font-space {
+  font-family: var(--font-space-mono);
+  font-weight: 400, 700;
+}
+.font-inter {
+  font-family: var(--font-inter);
+}
+.font-dancing {
+  font-family: var(--font-dancing-script), cursive;
+}
+.font-caveat {
+  font-family: var(--font-caveat), cursive;
+}
+.font-satisfy {
+  font-family: var(--font-satisfy), cursive;
+}
+.font-elite {
+  font-family: var(--font-special-elite), monospace;
+}
+.font-poppins{
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 500;
 }
 
-.font-space { font-family: var(--font-space-mono); }
-.font-inter { font-family: var(--font-inter); }
-
 /* Scrollbar */
-html{
+html {
   scroll-behavior: smooth;
 }
 body {
-  --sb-track-color: #232E33;
-  --sb-thumb-color: #F97316;
+  --sb-track-color: #232e33;
+  --sb-thumb-color: #f97316;
   --sb-size: 8px;
 }
 
 body::-webkit-scrollbar {
-  width: var(--sb-size)
+  width: var(--sb-size);
 }
 
 body::-webkit-scrollbar-track {
@@ -156,8 +172,7 @@ body::-webkit-scrollbar-thumb {
 
 @supports not selector(::-webkit-scrollbar) {
   body {
-    scrollbar-color: var(--sb-thumb-color)
-                     var(--sb-track-color);
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
 }
 
@@ -167,11 +182,9 @@ body::-webkit-scrollbar-thumb {
   height: 2.2rem;
 }
 
-
-
 /* gradient to hero text */
-@layer utilities{
-  .gradient-title{
-    @apply font-extrabold bg-gradient-to-br from-orange-600 via-orange-300 to-orange-500 bg-clip-text tracking-tighter text-transparent pr-2 pb-2
+@layer utilities {
+  .gradient-title {
+    @apply font-extrabold bg-gradient-to-br from-orange-500 via-orange-300 to-orange-400 bg-clip-text tracking-tighter text-transparent pr-2 pb-2;
   }
 }
