@@ -120,3 +120,58 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Font */
+:root {
+  --font-space-mono: 'Space Mono', monospace;
+  --font-inter: 'Inter', sans-serif;
+}
+
+.font-space { font-family: var(--font-space-mono); }
+.font-inter { font-family: var(--font-inter); }
+
+/* Scrollbar */
+html{
+  scroll-behavior: smooth;
+}
+body {
+  --sb-track-color: #232E33;
+  --sb-thumb-color: #F97316;
+  --sb-size: 8px;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size)
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 1px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 1px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
+}
+
+/* avatarbox clerk size */
+.cl-avatarBox {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+
+
+/* gradient to hero text */
+@layer utilities{
+  .gradient-title{
+    @apply font-extrabold bg-gradient-to-br from-orange-600 via-orange-300 to-orange-500 bg-clip-text tracking-tighter text-transparent pr-2 pb-2
+  }
+}
