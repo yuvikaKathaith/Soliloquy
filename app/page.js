@@ -13,8 +13,11 @@ import { Calendar, ChevronRight, FileText, BarChart2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import faqs from "@/data/faqs.json";
+import { getDailyprompt } from "@/actions/public";
 
-export default function Home() {
+export default async function Home() {
+  // randome quote
+  const advice = await getDailyprompt();
   return (
     <div className="relative container mx-auto px-4 pt-16 pb-16">
       <div className="max-w-6xl mx-auto text-center space-y-8">
@@ -48,8 +51,8 @@ export default function Home() {
             </div>
 
             <div className="space-y-4 p-4">
-              <h3 className="text-xl font-semibold text-orange-900 font-space">
-                daily prompts
+              <h3 className="text-xl font-normal text-orange-900 font-elite">
+                {advice? advice : "My Thoughts Today..."}
               </h3>
               <Skeleton className="h-4 bg-orange-100 rounded w-3/4" />
               <Skeleton className="h-4 bg-orange-100 rounded w-full" />
