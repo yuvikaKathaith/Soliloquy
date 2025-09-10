@@ -51,7 +51,7 @@ export default async function Home() {
             </div>
 
             <div className="space-y-4 p-4">
-              <h3 className="text-xl font-normal text-orange-900 font-elite">
+              <h3 className="text-lg font-normal text-orange-500 font-elite">
                 {advice? advice : "My Thoughts Today..."}
               </h3>
               <Skeleton className="h-4 bg-orange-100 rounded w-3/4" />
@@ -93,10 +93,10 @@ export default async function Home() {
               <div className="h-12 w-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
                 <feature.icon className="h-6 w-6 text-orange-600" />
               </div>
-              <h3 className="font-semibold text-xl text-orange-900 mb-2 font-poppins">
+              <h3 className="font-semibold text-lg text-orange-900 mb-2 font-poppins">
                 {feature.title}
               </h3>
-              <p className="text-orange-700 font-inter">{feature.description}</p>
+              <p className="text-md text-orange-700 font-inter">{feature.description}</p>
             </CardContent>
           </Card>
         ))}
