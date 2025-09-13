@@ -120,6 +120,11 @@
     @apply bg-background text-foreground;
   }
 }
+/* selection */
+::selection {
+  background:	#FFAA33; 
+  color: #fff;        
+}
 
 /* Font */
 .font-space {

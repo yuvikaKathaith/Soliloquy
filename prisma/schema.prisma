@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../lib/generated/prisma"
 }
 
 datasource db {
@@ -43,7 +42,7 @@ model Entry {
   title         String
   content       String      @db.Text //it allows us to add more data in our dB
   mood          String
-  moodeScore    Int
+  moodScore    Int
   moodImageUrl  String?
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        String 
