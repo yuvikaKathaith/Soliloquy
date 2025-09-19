@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+  <img alt="Logo" src="public/soliloquy-pen.png" width="50" />
+</div>
+<h1 align="center">
+  Soliloquy
+</h1>
 
-## Getting Started
+<p align="center">
+  <strong>Capture Your Thoughts with <a href="https://soliloquyy.vercel.app/" target="_blank">Soliloquy</strong>
+</p>
 
-First, run the development server:
+<p align="center">
+  Your personal space to pen thoughts, track moods, and revisit memories.
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![Soliloquy Demo](public/demo.png)  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚡Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+**Core Features**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Easy Journal Entry Creation** – Create beautiful, customizable journal entries with a rich text editor.  
+- **Organize with Moods** – Keep your entries organized with mood tags.  
+- **Mood Analytics** – Visualize your mood with beautiful graphs.  
+- **Mood Summary** – Get a summary calculating the mood score of your entries.  
+- **Powerful Search** – Instantly find notes by title, mood, or date of creation.  
+- **Secure Data** – Your entries are private and protected.  
+- **Responsive Design** – Works seamlessly on desktop and mobile devices.  
+- **User Authentication** – Secure authentication powered by Clerk.  
 
-## Learn More
+## 🛠️ Technologies Used
 
-To learn more about Next.js, take a look at the following resources:
+**Frontend**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- React 19  
+- Next.js 15  
+- Tailwind CSS v4  
+- Zod 3  
+- React Router v7  
+- Lucide React (icons)  
+- Arcjet  
+- date-fns (date formatting)  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Backend**
 
-## Deploy on Vercel
+- Prisma 6  
+- NeonDB  
+- Clerk  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📋 Prerequisites
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Node.js (v18 or higher)  
+- npm or yarn  
+
+
+## 🚀 Installation
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/mittirr/Reflct---A-Journaling-App.git
+   cd Reflct---A-Journaling-App
+   ```
+
+2. Install dependencies
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
+
+3. Create a `.env` file in the root directory with your credentials
+   ```
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY = your_clerk_publishable_key
+   CLERK_SECRET_KEY = your_clerk_api_key
+
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL = /sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL = /sign-up
+
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL = /dashboard
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL = /dashboard
+
+   DATABASE_URL = your_neonDB_api_key
+
+   ARCJET_KEY = Your_arcjet_api_key
+
+   PIXABAY_API_KEY = your_pixabay_api_key
+   ```
+
+4. Start the development server
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. Open your browser and navigate to `http://localhost:3000`
+
+## 🏗️ Building for Production
+  ```bash
+  npm run build
+  # or
+  yarn build
+  ```
+
+## 📱 Usage
+
+### Creating a New Entry
+1. Sign in to your account
+2. Navigate to "Write New"
+3. Fill in the title, mood, content and choose a collection
+5. Click "Publish"
+
+### Searching Notes
+- Use the search bar to find notes by title, date, or mood
+
+## 🔒 Authentication
+
+Soliloquy uses Clerk for authentication. Users can:
+- Sign-in / Sign-up with email and password
+- Sign-in / Sign-up with Google
+- Edit credentials
