@@ -117,6 +117,6 @@
 ## 🔒 Authentication
 
 Soliloquy uses Clerk for authentication. Users can:
-- Sign-in / Sign-up with email and password
+- Sign-in / Sign-up with username, email and password
 - Sign-in / Sign-up with Google
 - Edit credentials
