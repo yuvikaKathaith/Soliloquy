@@ -39,13 +39,14 @@
 - React Router v7  
 - Lucide React (icons)  
 - Arcjet  
-- date-fns (date formatting)  
+- date-fns (date formatting)
+- UI Library - shadcn/ui
 
 **Backend**
 
 - Prisma 6  
 - NeonDB  
-- Clerk  
+- Clerk
 
 ## 📋 Prerequisites
 
