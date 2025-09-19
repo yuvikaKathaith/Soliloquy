@@ -10,6 +10,7 @@ import Header from "@/components/header";
 import { ClerkProvider } from "@clerk/nextjs";
 import Link from "next/link";
 import { neobrutalism } from "@clerk/themes";
+import { Toaster } from "sonner";
 
 const specialElite = Special_Elite({
   subsets: ["latin"],
@@ -61,6 +62,7 @@ export default function RootLayout({ children }) {
           <div className="bg-[url('/bg.jpg')] dark:bg-[url('/bg_dark.jpg')] dark:bg-cover fixed -z-10 inset-0 opacity-40" />
           <Header />
           <main className="min-h-screen">{children}</main>
+          <Toaster richColors /> 
           <footer className="py-10 opacity-90">
             <div className="font-space mx-auto px-4 text-center text-gray-900 ">
               <p className="text-[14px]">
