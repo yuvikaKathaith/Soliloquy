@@ -58,8 +58,8 @@
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/mittirr/Reflct---A-Journaling-App.git
-   cd Reflct---A-Journaling-App
+   git clone https://github.com/yuvikaKathaith/Soliloquy.git
+   cd Soliloquy
    ```
 
 2. Install dependencies
