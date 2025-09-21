@@ -8,12 +8,13 @@ import { getPixabayImage } from "./public";
 import { request } from "@arcjet/next";
 import aj from "@/lib/arcjet";
 
+// journal entry creation API
 export async function createJournalEntry(data) {
   try {
     const { userId } = await auth();
     if (!userId) throw new Error("Unauthorized");
 
-    // arcjet rate limiting
+    // arcjet rate limiting to jounral entries per user
     const req = await request()
 
     const decision = await aj.protect(req, {

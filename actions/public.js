@@ -2,6 +2,7 @@
 
 import { unstable_cache } from 'next/cache';
 
+// pixabay img API
 export async function getPixabayImage(query){
   try {
     const res = await fetch(
@@ -15,6 +16,7 @@ export async function getPixabayImage(query){
   }
 }
 
+// daily advice API
 export const getDailyprompt = unstable_cache(
   async () => {
     try {
