@@ -5,17 +5,13 @@
   Soliloquy
 </h1>
 
-<p align="center">
-  <strong>Capture Your Thoughts with <a href="https://soliloquyy.vercel.app/" target="_blank">Soliloquy</strong>
-</p>
-
-<p align="center">
-  Your personal space to pen thoughts, track moods, and revisit memories.
-</p>
+<h3 align="center">
+  <strong> Capture Your Thoughts with <a href="https://soliloquyy.vercel.app/" target="_blank">Soliloquy</strong>
+</h3>
 
 ![Soliloquy Demo](public/demo.png)  
 
-## ⚡Features
+## 𓂃🪶 Features
 
 **Core Features**
 
@@ -28,7 +24,7 @@
 - **Responsive Design** – Works seamlessly on desktop and mobile devices.  
 - **User Authentication** – Secure authentication powered by Clerk.  
 
-## 🛠️ Technologies Used
+## </> Technologies Used
 
 **Frontend**
 
@@ -48,18 +44,18 @@
 - NeonDB  
 - Clerk
 
-## 📋 Prerequisites
+## 📜 Prerequisites
 
 - Node.js (v18 or higher)  
 - npm or yarn  
 
 
-## 🚀 Installation
+## 🔧 Installation
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/mittirr/Reflct---A-Journaling-App.git
-   cd Reflct---A-Journaling-App
+   git clone https://github.com/yuvikaKathaith/Soliloquy.git
+   cd Soliloquy
    ```
 
 2. Install dependencies
@@ -103,7 +99,7 @@
   yarn build
   ```
 
-## 📱 Usage
+## 🖳 Usage
 
 ### Creating a New Entry
 1. Sign in to your account
@@ -111,10 +107,10 @@
 3. Fill in the title, mood, content and choose a collection
 5. Click "Publish"
 
-### Searching Notes
+### 🔍︎ Searching Notes
 - Use the search bar to find notes by title, date, or mood
 
-## 🔒 Authentication
+## 🗝 Authentication
 
 Soliloquy uses Clerk for authentication. Users can:
 - Sign-in / Sign-up with username, email and password
