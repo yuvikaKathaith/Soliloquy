@@ -5,13 +5,9 @@
   Soliloquy
 </h1>
 
-<p align="center">
+<h3 align="center">
   <strong>Capture Your Thoughts with <a href="https://soliloquyy.vercel.app/" target="_blank">Soliloquy</strong>
-</p>
-
-<p align="center">
-  Your personal space to pen thoughts, track moods, and revisit memories.
-</p>
+</h3>
 
 ![Soliloquy Demo](public/demo.png)  
 
