@@ -4,6 +4,7 @@ import { createCollection, getCollections } from "@/actions/collection";
 import { createJournalEntry } from "@/actions/journal";
 import { getMoodById, MOODS } from "@/app/lib/moods";
 import { journalSchema } from "@/app/lib/schema";
+import CollectionForm from "@/components/collection-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -54,6 +55,7 @@ const JournalEntryPage = () => {
     control,
     formState: { errors },
     getValues,
+    setValue
   } = useForm({
     resolver: zodResolver(journalSchema),
     defaultValues: {
@@ -68,8 +70,7 @@ const JournalEntryPage = () => {
     fetchCollections();
   }, []);
 
-  const isLoading = false;
-
+  
   useEffect(() => {
     if (actionResult && !actionLoading) {
       router.push(
@@ -88,6 +89,21 @@ const JournalEntryPage = () => {
       moodQuery: mood.pixabayQuery,
     });
   });
+
+  useEffect(() => {
+    if(createdCollection) {
+      setIsCollectionDialogOpen(false);
+      fetchCollections();
+      setValue("collectionId", createdCollection.id);
+      toast.success(`Your Collection ${createdCollection.name} created!`)
+    }
+  }, [createdCollection]);
+
+  const handleCreateCollection = async(data) => {
+    createCollectionFn(data);
+  }
+  
+  const isLoading = actionLoading || collectionsLoading;
 
   return (
     <div className="py-8">
@@ -210,7 +226,7 @@ const JournalEntryPage = () => {
                 }}
                 value={field.value}
               >
-                <SelectTrigger className="bg-stone-50">
+                <SelectTrigger className="bg-stone-50 w-54">
                   <SelectValue placeholder="Choose a collection..." />
                 </SelectTrigger>
                 <SelectContent>
@@ -237,6 +253,14 @@ const JournalEntryPage = () => {
           </Button>
         </div>
       </form>
+
+      {/* collection box popup */}
+      <CollectionForm
+        loading={createCollectionLoading}
+        onSuccess={handleCreateCollection}
+        open={isCollectionDiaglougeOpen}
+        setOpen={setIsCollectionDialogOpen}
+      />
     </div>
   );
 };
