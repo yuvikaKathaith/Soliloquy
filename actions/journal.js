@@ -69,7 +69,7 @@ export async function createJournalEntry(data) {
   }
 }
 
-export async function getJournallEntries({ collectionId, orderBy = "desc" }) {
+export async function getJournalEntries({ collectionId, orderBy = "desc" } = {}) {
   try {
     const { userId } = await auth();
     if (!userId) throw new Error("Unauthorized");
@@ -117,72 +117,6 @@ export async function getJournallEntries({ collectionId, orderBy = "desc" }) {
   } catch (error) {
     return { success: false, error: error.message }
   };
-}
-export async function getJournalEntries(id) {
-  try {
-    const { userId } = await auth();
-    if (!userId) throw new Error("Unauthorized");
-
-    const user = await db.user.findUnique({
-      where: { clerkUserId: userId },
-    });
-
-    if (!user) throw new Error("User not found");
-
-    const entry = await db.entry.findFirst({
-      where: {
-        id,
-        userId: user.id,
-      },
-      include: {
-        collection: {
-          select: {
-            id: true,
-            name: true,
-          },
-        },
-      },
-    });
-
-    if (!entry) throw new Error("Entry not found");
-
-    return entry;
-  } catch (error) {
-    throw new Error(error.message);
-  }
-}
-
-export async function deleteJournalEntry(id) {
-  try {
-    const { userId } = await auth();
-    if (!userId) throw new Error("Unauthorized");
-
-    const user = await db.user.findUnique({
-      where: { clerkUserId: userId },
-    });
-
-    if (!user) throw new Error("User not found");
-
-    // Check if entry exists and belongs to user
-    const entry = await db.entry.findFirst({
-      where: {
-        id,
-        userId: user.id,
-      },
-    });
-
-    if (!entry) throw new Error("Entry not found");
-
-    // Delete the entry
-    await db.entry.delete({
-      where: { id },
-    });
-
-    revalidatePath("/dashboard");
-    return entry;
-  } catch (error) {
-    throw new Error(error.message);
-  }
 }
 
 export async function updateJournalEntry(data) {

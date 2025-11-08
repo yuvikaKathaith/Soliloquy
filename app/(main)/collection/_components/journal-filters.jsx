@@ -21,18 +21,19 @@ import { Calendar as CalendarIcon, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MOODS } from "@/app/lib/moods";
 import EntryCard from "@/components/entry-card";
+import { useMemo } from "react";
 
-export function JournalFilters({ entries }) {
+export function JournalFilters({ entries = [] }) {
+  const stableEntries = useMemo(() => entries, [JSON.stringify(entries)]); // ✅ avoids object identity change
+
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMood, setSelectedMood] = useState("");
   const [date, setDate] = useState(null);
-  const [filteredEntries, setFilteredEntries] = useState(entries);
+  const [filteredEntries, setFilteredEntries] = useState(stableEntries);
 
-  // Apply filters whenever filter values or entries change
   useEffect(() => {
-    let filtered = entries;
+    let filtered = stableEntries;
 
-    // Apply search filter
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(
@@ -42,12 +43,10 @@ export function JournalFilters({ entries }) {
       );
     }
 
-    // Apply mood filter
     if (selectedMood) {
       filtered = filtered.filter((entry) => entry.mood === selectedMood);
     }
 
-    // Apply date filter
     if (date) {
       filtered = filtered.filter((entry) =>
         isSameDay(new Date(entry.createdAt), date)
@@ -55,14 +54,8 @@ export function JournalFilters({ entries }) {
     }
 
     setFilteredEntries(filtered);
-  }, [entries, searchQuery, selectedMood, date]);
-
-  const clearFilters = () => {
-    setSearchQuery("");
-    setSelectedMood("");
-    setDate(null);
-  };
-
+  }, [stableEntries, searchQuery, selectedMood, date]);
+  
   return (
     <>
       {/* Filters */}
@@ -128,17 +121,17 @@ export function JournalFilters({ entries }) {
 
       {/* Results Summary */}
       <div className="text-sm text-gray-500">
-        Showing {filteredEntries.length} of {entries.length} entries
+        Showing {filteredEntries?.length} of {entries?.length} entries
       </div>
 
       {/* Entries List */}
-      {filteredEntries.length === 0 ? (
+      {filteredEntries?.length === 0 ? (
         <div className="text-center p-8">
           <p className="text-gray-500">No entries found</p>
         </div>
       ) : (
         <div className="flex flex-col gap-4">
-          {filteredEntries.map((entry) => (
+          {filteredEntries?.map((entry) => (
             <EntryCard key={entry.id} entry={entry} />
           ))}
         </div>

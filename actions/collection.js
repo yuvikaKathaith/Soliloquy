@@ -6,7 +6,6 @@ import { request } from "@arcjet/next";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
-// get collection
 export async function getCollections() {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
@@ -19,7 +18,6 @@ export async function getCollections() {
     throw new Error("User not found");
   }
 
-  // finding all the collections of user in dB
   const collections = await db.collection.findMany({
     where: { userId: user.id },
     orderBy: { createdAt: "desc" },
@@ -28,19 +26,18 @@ export async function getCollections() {
   return collections;
 }
 
-// create collection
 export async function createCollection(data) {
   try {
     const { userId } = await auth();
     if (!userId) throw new Error("Unauthorized");
 
-    // Get request data for ArcJet 
+    // Get request data for ArcJet
     const req = await request();
 
-    // Check rate limit - adding rate limit to collections as well
+    // Check rate limit
     const decision = await aj.protect(req, {
       userId,
-      requested: 1, 
+      requested: 1, // Specify how many tokens to consume
     });
 
     if (decision.isDenied()) {
@@ -60,12 +57,10 @@ export async function createCollection(data) {
       throw new Error("Request blocked");
     }
 
-    // check if user exists in dB
     const user = await db.user.findUnique({
       where: { clerkUserId: userId },
     });
 
-    // if not
     if (!user) {
       throw new Error("User not found");
     }
@@ -80,6 +75,38 @@ export async function createCollection(data) {
 
     revalidatePath("/dashboard");
     return collection;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function deleteCollection(id) {
+  try {
+    const { userId } = await auth();
+    if (!userId) throw new Error("Unauthorized");
+
+    const user = await db.user.findUnique({
+      where: { clerkUserId: userId },
+    });
+
+    if (!user) throw new Error("User not found");
+
+    // Check if collection exists and belongs to user
+    const collection = await db.collection.findFirst({
+      where: {
+        id,
+        userId: user.id,
+      },
+    });
+
+    if (!collection) throw new Error("Collection not found");
+
+    // Delete the collection (entries will be cascade deleted)
+    await db.collection.delete({
+      where: { id },
+    });
+
+    return true;
   } catch (error) {
     throw new Error(error.message);
   }
