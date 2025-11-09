@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
 import { FolderOpenIcon, PenBox } from "lucide-react";
-import UserMenu from "./userMenu.jsx";
+import UserMenu from "./user-menu.jsx";
 import { checkUser } from "@/lib/checkUser";       
 
 const Header = async() => {

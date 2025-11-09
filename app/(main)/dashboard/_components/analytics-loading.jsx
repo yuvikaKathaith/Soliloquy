@@ -54,4 +54,4 @@ const MoodAnalyticsSkeleton = () => {
   );
 };
 
-export default MoodAnalyticsSkeleton; 
+export default MoodAnalyticsSkeleton;

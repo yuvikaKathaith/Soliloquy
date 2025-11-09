@@ -11,12 +11,12 @@ const colorSchemes = {
     tab: "bg-amber-200 group-hover:bg-amber-300",
   },
   collection: {
-    bg: "bg-yellow-100 hover:bg-yellow-50",
-    tab: "bg-yellow-200 group-hover:bg-yellow-300",
+    bg: "bg-blue-100 hover:bg-blue-50",
+    tab: "bg-blue-200 group-hover:bg-blue-300",
   },
   createCollection: {
-    bg: "bg-slate-200 hover:bg-slate-100",
-    tab: "bg-slate-100 hover:bg-slate-50",
+    bg: "bg-gray-200 hover:bg-gray-100",
+    tab: "bg-gray-100 hover:bg-gray-50",
   },
 };
 

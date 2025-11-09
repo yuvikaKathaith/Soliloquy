@@ -1,4 +1,4 @@
-import TestimonialCarousel from "@/components/testimonialCarousel";
+import TestimonialCarousel from "@/components/testimonial-carousel";
 import {
   Accordion,
   AccordionContent,
@@ -217,9 +217,11 @@ export default async function Home() {
             <p className="text-lg text-orange-700 mb-8 max-w-2xl mx-auto font-poppins">
               Write your thoughts, own your stage.
             </p>
-            <Button size="lg" variant="journal" className="animate-bounce">
-              Get Started for Free <ChevronRight className="ml-2 h-4 w-4" />
-            </Button>
+            <Link href='/dashboard'>
+              <Button size="lg" variant="journal" className="animate-bounce">
+                Get Started for Free <ChevronRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </CardContent>
         </Card>
       </div>

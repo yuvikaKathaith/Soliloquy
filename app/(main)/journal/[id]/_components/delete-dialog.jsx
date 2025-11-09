@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
 import { deleteJournalEntry } from "@/actions/journal";
-import useFetch from "@/hooks/useFetch";
+import useFetch from "@/hooks/use-fetch";
 
 export default function DeleteDialog({ entryId }) {
   const router = useRouter();

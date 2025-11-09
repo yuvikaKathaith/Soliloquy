@@ -14,13 +14,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import useFetch from "@/hooks/useFetch";
+import useFetch from "@/hooks/use-fetch";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import {
   createJournalEntry,
   updateJournalEntry,
-  getJournalEntries,
+  getJournalEntry,
   getDraft,
   saveDraft,
 } from "@/actions/journal";
@@ -28,7 +28,7 @@ import { createCollection, getCollections } from "@/actions/collection";
 import { getMoodById, MOODS } from "@/app/lib/moods";
 import { BarLoader } from "react-spinners";
 import { toast } from "sonner";
-import { journalSchema } from "@/app/lib/schema";
+import { journalSchema } from "@/app/lib/schemas";
 import "react-quill-new/dist/quill.snow.css";
 import CollectionForm from "@/components/collection-form";
 
@@ -52,7 +52,7 @@ export default function JournalEntryPage() {
     loading: entryLoading,
     data: existingEntry,
     fn: fetchEntry,
-  } = useFetch(getJournalEntries);
+  } = useFetch(getJournalEntry);
 
   const {
     loading: draftLoading,

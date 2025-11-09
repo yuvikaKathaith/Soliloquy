@@ -5,9 +5,9 @@ import { createCollection } from "@/actions/collection";
 import { toast } from "sonner";
 import CollectionPreview from "./collection-preview";
 import CollectionForm from "@/components/collection-form";
-import useFetch from "@/hooks/useFetch.js";
+import useFetch from "@/hooks/use-fetch";
 
-const Collections = ({ collections = [], entriesByCollection = {} }) => {
+const Collections = ({ collections = [], entriesByCollection }) => {
   const [isCollectionDialogOpen, setIsCollectionDialogOpen] = useState(false);
 
   const {
@@ -19,8 +19,10 @@ const Collections = ({ collections = [], entriesByCollection = {} }) => {
   useEffect(() => {
     if (createdCollection) {
       setIsCollectionDialogOpen(false);
+      fetchCollections(); // Refresh collections list
       toast.success(`Collection ${createdCollection.name} created!`);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [createdCollection, createCollectionLoading]);
 
@@ -33,7 +35,6 @@ const Collections = ({ collections = [], entriesByCollection = {} }) => {
   return (
     <section id="collections" className="space-y-6">
       <h2 className="text-3xl font-bold gradient-title">Collections</h2>
-
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* Create New Collection Button */}
         <CollectionPreview
@@ -56,11 +57,10 @@ const Collections = ({ collections = [], entriesByCollection = {} }) => {
             key={collection.id}
             id={collection.id}
             name={collection.name}
-            entries={entriesByCollection?.[collection.id] || []}
+            entries={entriesByCollection[collection.id] || []}
           />
         ))}
 
-        {/* New Collection Form Modal */}
         <CollectionForm
           loading={createCollectionLoading}
           onSuccess={handleCreateCollection}

@@ -5,11 +5,11 @@ import { Badge } from "@/components/ui/badge";
 import DeleteDialog from "./_components/delete-dialog";
 import EditButton from "./_components/edit-button";
 import { getMoodById } from "@/app/lib/moods";
-import { getJournalEntries } from "@/actions/journal";
+import { getJournalEntry } from "@/actions/journal";
 
 export default async function JournalEntryPage({ params }) {
   const { id } = await params;
-  const entry = await getJournalEntries(id);
+  const entry = await getJournalEntry(id);
   const mood = getMoodById(entry.mood);
 
   return (

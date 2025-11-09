@@ -15,7 +15,7 @@ import {
 import { getAnalytics } from "@/actions/analytics";
 import { getMoodById, getMoodTrend } from "@/app/lib/moods";
 import { format, parseISO } from "date-fns";
-import useFetch from "@/hooks/useFetch";
+import useFetch from "@/hooks/use-fetch";
 import MoodAnalyticsSkeleton from "./analytics-loading";
 import { useUser } from "@clerk/nextjs";
 import {
