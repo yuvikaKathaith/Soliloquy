@@ -1,35 +1,51 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { createCollection } from "@/actions/collection";
+import { createCollection, getCollections } from "@/actions/collection";
 import { toast } from "sonner";
 import CollectionPreview from "./collection-preview";
 import CollectionForm from "@/components/collection-form";
 import useFetch from "@/hooks/use-fetch";
 
-const Collections = ({ collections = [], entriesByCollection }) => {
+const Collections = ({ collections: initialCollections = [], entriesByCollection }) => {
   const [isCollectionDialogOpen, setIsCollectionDialogOpen] = useState(false);
+  const [collections, setCollections] = useState(initialCollections);
 
+  // 1️⃣ Create fetch hook for collections
+  const {
+    loading: collectionsLoading,
+    data: fetchedCollections,
+    fn: fetchCollections,
+  } = useFetch(getCollections);
+
+  // 2️⃣ Create hook for creating collection
   const {
     loading: createCollectionLoading,
     fn: createCollectionFn,
     data: createdCollection,
   } = useFetch(createCollection);
 
+  // 3️⃣ Update list after creating a new collection
   useEffect(() => {
     if (createdCollection) {
       setIsCollectionDialogOpen(false);
-      fetchCollections(); // Refresh collections list
+      fetchCollections(); // refresh list
       toast.success(`Collection ${createdCollection.name} created!`);
     }
+  }, [createdCollection]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [createdCollection, createCollectionLoading]);
+  // 4️⃣ When new collections are fetched, update local state
+  useEffect(() => {
+    if (fetchedCollections) {
+      setCollections(fetchedCollections);
+    }
+  }, [fetchedCollections]);
 
   const handleCreateCollection = async (data) => {
     createCollectionFn(data);
   };
 
+  if (collectionsLoading) return <p>Loading collections...</p>;
   if (collections.length === 0) return <></>;
 
   return (
